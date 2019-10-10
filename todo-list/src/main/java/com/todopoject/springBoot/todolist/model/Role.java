@@ -3,26 +3,26 @@ package com.todopoject.springBoot.todolist.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "auth_role")
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "auth_role_id")
-    private int id;
+    @GeneratedValue
+    private int role_id;
 
-    @Column(name = "role_name")
     private String role;
 
-    @Column(name = "role_desc")
-    private String desc;
+    public Role() {super();}
 
-    public int getId() {
-        return id;
+    public Role(String role) {
+        this.role = role;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getRole_id() {
+        return role_id;
+    }
+
+    public void setRole_id(int role_id) {
+        this.role_id = role_id;
     }
 
     public String getRole() {
@@ -33,20 +33,11 @@ public class Role {
         this.role = role;
     }
 
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     @Override
     public String toString() {
         return "Role{" +
-                "id=" + id +
+                "role_id=" + role_id +
                 ", role='" + role + '\'' +
-                ", desc='" + desc + '\'' +
                 '}';
     }
 }

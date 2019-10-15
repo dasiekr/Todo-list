@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,6 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+
     @Qualifier("customUserDetailsService")
     @Autowired
     private UserDetailsService userDetailsService;
@@ -30,38 +32,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.authenticationProvider(authenticationProvider());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/rest/**").authenticated()
-                //.antMatchers("/secure/**").hasAnyRole("ADMIN")
+                .antMatchers("/").permitAll()
+                .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
-                .anyRequest().permitAll()
+                .antMatchers("/todos/**").hasAnyAuthority("ADMIN", "USER")
+                .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll();
-//        http.authorizeRequests()
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/login").permitAll()
-//                .antMatchers("register").permitAll()
-//                .antMatchers("todos/**").hasAnyAuthority("SUPER_USER", "ADMIN_USER", "SITE_USER")
-//                .anyRequest().authenticated()
-//                .and()
-//                .csrf().disable().formLogin()
-//                .loginPage("/login")
-//                .failureUrl("/login?error=true")
-//                .defaultSuccessUrl("/todos")
-//                .usernameParameter("user_name")
-//                .passwordParameter("password")
-//                .and()
-//                .logout()
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                .logoutSuccessUrl("/").and()
-//                .exceptionHandling()
-//                .accessDeniedPage("/access-denied");
+                .csrf().disable().formLogin()
+                .loginPage("/login")
+                .failureUrl("/login?error=true")
+                .defaultSuccessUrl("/todos")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/").and()
+                .exceptionHandling()
+                .accessDeniedPage("/access-denied");
+    }
+
+    @Bean
+    DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setUserDetailsService(this.userDetailsService);
+        return daoAuthenticationProvider;
     }
 
     @Override

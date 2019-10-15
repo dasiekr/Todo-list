@@ -46,4 +46,15 @@ public class UserController {
         userRepository.save(user);
             return "login";
     }
+
+    @GetMapping(value = "/login")
+    public String login(Model model) {
+        model.addAttribute("user", new User());
+        return "login";
+    }
+
+    @GetMapping(value = "/todos")
+    public String todosPage() {
+        return "todos";
+    }
 }

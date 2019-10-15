@@ -19,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = repository.findByUsername(username);
         CustomUserDetails userDetails = null;
         if(user != null) {
-            userDetails = new CustomUserDetails();
+            userDetails = new CustomUserDetails(user);
         }else{
             throw new UsernameNotFoundException("User not exist with name : " + username);
         }

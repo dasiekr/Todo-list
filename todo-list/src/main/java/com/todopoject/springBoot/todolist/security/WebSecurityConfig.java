@@ -17,7 +17,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -38,24 +37,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
+//                .antMatchers("/").permitAll()
+                .antMatchers("/todos").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/login").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/todos/**").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers("/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .csrf().disable().formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error=true")
+                .csrf().disable()
+                .formLogin().loginPage("/login")
+//                .failureUrl("/login?error=true")
                 .defaultSuccessUrl("/todos")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").and()
-                .exceptionHandling()
-                .accessDeniedPage("/access-denied");
+                .logoutSuccessUrl("/login");
+//                .and()
+//                .exceptionHandling()
+//                .accessDeniedPage("/access-denied");
     }
 
     @Bean

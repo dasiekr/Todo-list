@@ -1,4 +1,9 @@
 package com.todopoject.springBoot.todolist.error;
 
-public class ExistingUsernameException {
+public class ExistingUsernameException extends Exception {
+
+    @Override
+    public String getMessage() {
+        return "User with this username already exists";
+    }
 }

@@ -100,6 +100,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
                 ", roles=" + roles +
                 '}';
     }

@@ -4,6 +4,8 @@ import com.todopoject.springBoot.todolist.model.Role;
 import com.todopoject.springBoot.todolist.model.User;
 import com.todopoject.springBoot.todolist.repository.RoleRepository;
 import com.todopoject.springBoot.todolist.repository.UserRepository;
+import com.todopoject.springBoot.todolist.service.UserManager;
+import com.todopoject.springBoot.todolist.service.UserManagerImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ import java.util.Set;
 @Controller
 public class UserController {
 
+    UserManager userManager;
+
     @Autowired
     UserRepository userRepository;
 
@@ -28,6 +32,10 @@ public class UserController {
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    public UserController(UserManager userManager) {
+        this.userManager = userManager;
+    }
 
     @GetMapping(value = "/registration")
     public String registration(Model model) {
@@ -40,11 +48,8 @@ public class UserController {
         if(bindingResult.hasErrors()) {
             return "registration";
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Role userRole = roleRepository.findByRole("USER");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-        userRepository.save(user);
-            return "login";
+        userManager.userRegistration(user);
+        return "login";
     }
 
     @GetMapping(value = "/login")

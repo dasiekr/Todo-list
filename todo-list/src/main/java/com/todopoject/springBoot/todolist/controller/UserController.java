@@ -1,5 +1,8 @@
 package com.todopoject.springBoot.todolist.controller;
 
+import com.todopoject.springBoot.todolist.error.DifferentPasswordException;
+import com.todopoject.springBoot.todolist.error.ExistingEmailException;
+import com.todopoject.springBoot.todolist.error.ExistingUsernameException;
 import com.todopoject.springBoot.todolist.model.Role;
 import com.todopoject.springBoot.todolist.model.User;
 import com.todopoject.springBoot.todolist.repository.RoleRepository;
@@ -23,6 +26,7 @@ import java.util.Set;
 public class UserController {
 
     IUserManager userManager;
+
     IUserValidator userValidator;
 
     @Autowired
@@ -42,22 +46,36 @@ public class UserController {
 
     @GetMapping(value = "/registration")
     public String registration(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("userData", new User());
         return "registration";
     }
 
     @PostMapping(value = "/registration")
-    public String registration(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+    public String registration(@Valid @ModelAttribute("userData") User user, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
             return "registration";
         }
+        try {
+            userValidator.userValidation(user);
+        } catch (ExistingUsernameException e) {
+            model.addAttribute("existingUsername", e.getMessage());
+            return "registration";
+        } catch (DifferentPasswordException e) {
+            model.addAttribute("differentPasswords", e.getMessage());
+            return "registration";
+        } catch (ExistingEmailException e) {
+            model.addAttribute("existingEmail", e.getMessage());
+            return "registration";
+        }
+
         userManager.userRegistration(user);
+        model.addAttribute("userDataLogin", new User());
         return "login";
     }
 
     @GetMapping(value = "/login")
     public String login(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("userDataLogin", new User());
         return "login";
     }
 

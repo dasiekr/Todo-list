@@ -4,8 +4,9 @@ import com.todopoject.springBoot.todolist.model.Role;
 import com.todopoject.springBoot.todolist.model.User;
 import com.todopoject.springBoot.todolist.repository.RoleRepository;
 import com.todopoject.springBoot.todolist.repository.UserRepository;
+import com.todopoject.springBoot.todolist.service.IUserManager;
 import com.todopoject.springBoot.todolist.service.UserManager;
-import com.todopoject.springBoot.todolist.service.UserManagerImplementation;
+import com.todopoject.springBoot.todolist.validator.IUserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,8 @@ import java.util.Set;
 @Controller
 public class UserController {
 
-    UserManager userManager;
+    IUserManager userManager;
+    IUserValidator userValidator;
 
     @Autowired
     UserRepository userRepository;
@@ -33,8 +35,9 @@ public class UserController {
     BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserManager userManager) {
+    public UserController(IUserManager userManager, IUserValidator userValidator) {
         this.userManager = userManager;
+        this.userValidator = userValidator;
     }
 
     @GetMapping(value = "/registration")
@@ -61,5 +64,11 @@ public class UserController {
     @GetMapping(value = "/todos")
     public String todosPage() {
         return "todos";
+    }
+
+    @GetMapping(value = "/logout")
+    public String logout() {
+        userManager.logout();
+        return "logout";
     }
 }

@@ -21,17 +21,17 @@ public class Task {
 
     private boolean isDone;
 
-    private int userId;
+    private String username;
 
     public Task() {
         super();
     }
 
-    public Task(String description, Date targetDate, boolean isDone, int userId) {
+    public Task(String description, Date targetDate, boolean isDone, String username) {
         this.description = description;
         this.targetDate = targetDate;
         this.isDone = isDone;
-        this.userId = userId;
+        this.username = username;
     }
 
 
@@ -67,12 +67,12 @@ public class Task {
         isDone = done;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -82,7 +82,7 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", targetDate=" + targetDate +
                 ", isDone=" + isDone +
-                ", userId=" + userId +
+                ", username=" + username +
                 '}';
     }
 }

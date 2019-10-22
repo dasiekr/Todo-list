@@ -29,14 +29,6 @@ public class UserController {
 
     IUserValidator userValidator;
 
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    RoleRepository roleRepository;
-
-    @Autowired
-    BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public UserController(IUserManager userManager, IUserValidator userValidator) {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class TaskManager implements ITaskManager{
@@ -61,5 +62,10 @@ public class TaskManager implements ITaskManager{
     @Override
     public void deleteTask(int id) {
         taskRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Task> getTasksByUsername() {
+        return taskRepository.getTasksByUsername(getLoggedInUserName());
     }
 }

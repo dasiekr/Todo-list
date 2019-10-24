@@ -3,24 +3,16 @@ package com.todopoject.springBoot.todolist.controller;
 import com.todopoject.springBoot.todolist.error.DifferentPasswordException;
 import com.todopoject.springBoot.todolist.error.ExistingEmailException;
 import com.todopoject.springBoot.todolist.error.ExistingUsernameException;
-import com.todopoject.springBoot.todolist.model.Role;
 import com.todopoject.springBoot.todolist.model.User;
-import com.todopoject.springBoot.todolist.repository.RoleRepository;
-import com.todopoject.springBoot.todolist.repository.UserRepository;
 import com.todopoject.springBoot.todolist.service.IUserManager;
-import com.todopoject.springBoot.todolist.service.UserManager;
 import com.todopoject.springBoot.todolist.validator.IUserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 public class UserController {
@@ -71,14 +63,14 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping(value = "/todos")
-    public String todosPage() {
-        return "todos";
-    }
+//    @GetMapping(value = "/tasks")
+//    public String todosPage() {
+//        return "tasks";
+//    }
 
-    @GetMapping(value = "/logout")
-    public String logout() {
-        userManager.logout();
-        return "logout";
-    }
+//    @GetMapping(value = "/logout")
+//    public String logout() {
+//        userManager.logout();
+//        return "logout";
+//    }
 }

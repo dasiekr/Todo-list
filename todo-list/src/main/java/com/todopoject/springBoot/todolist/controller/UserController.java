@@ -63,14 +63,4 @@ public class UserController {
         return "login";
     }
 
-//    @GetMapping(value = "/tasks")
-//    public String todosPage() {
-//        return "tasks";
-//    }
-
-//    @GetMapping(value = "/logout")
-//    public String logout() {
-//        userManager.logout();
-//        return "logout";
-//    }
 }

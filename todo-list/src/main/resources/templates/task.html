@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head th:replace="fragments/header :: head">
+</head>
+
+<body>
+<div th:replace="fragments/header :: navigation"></div>
+
+    <div class="container">
+        <form action="#" th:action="${update.task_id}" th:object="${update}" method="post">
+            <div class="container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Target date</th>
+                            <th>Is it done?</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td th:text="${update.description}"></td>
+                            <td th:text="${update.targetDate}"></td>
+                            <td th:text="${update.done}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -30,15 +30,21 @@ public class TaskController {
         return "tasks2";
     }
 
-//    @PostMapping(value = "/tasks/{id}")
-//    public String deleteTodo(@PathVariable int id) {
-//        taskManager.deleteTask(id);
-//        return "tasks";
-//    }
-//
-//    @GetMapping(value = "/tasks/add")
-//    public String showAddTodoPage(Model model) {
-//        model.addAttribute("newTask", new Task());
-//        return "addTodo";
-//    }
+    @PostMapping(value = "/deleteTodo/{id}")
+    public String deleteTodo(@PathVariable int id) {
+        taskManager.deleteTask(id);
+        return "redirect:/tasks";
+    }
+
+    @GetMapping(value = "/updateTodo/{id}")
+    public String updateTodoPage(@PathVariable int id, Model model) {
+        model.addAttribute("update", taskManager.getById(id));
+        return "task";
+    }
+
+    @PostMapping(value = "/updateTodo/{id}")
+    public String updateTask(@PathVariable int id, String description) {
+        taskManager.updateTask(description, id);
+        return "redirect:/tasks";
+    }
 }

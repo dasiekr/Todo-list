@@ -2,14 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head th:replace="fragments/header :: head">
-<!--    <meta charset="UTF-8">-->
-<!--    <title>My App</title>-->
-
-<!--    <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">-->
-<!--    <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
-<!--    <script src="webjars/jquery/1.9.1/jquery.min.js"></script>-->
-<!--    <script src="webjars/bootstrap-datepicker/1.0.1/js/bootstrap-datepicker.js"></script>-->
-
 </head>
 <body>
 <div th:replace="fragments/header :: navigation"></div>
@@ -22,6 +14,8 @@
                             <th>Description</th>
                             <th>Target date</th>
                             <th>Is it done?</th>
+                            <th>Update</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
 
@@ -30,6 +24,19 @@
                             <td th:text="${task.description}"></td>
                             <td th:text="${task.targetDate}"></td>
                             <td th:text="${task.done}"></td>
+                            <td th:hidden="hidden" class="id" th:text="${task.task_id}"></td>
+
+                            <form action="#" th:action="@{'/updateTodo/' + ${task.task_id}}" method="get">
+                                <td>
+                                    <button class="btn btn-success">Update</button>
+                                </td>
+                            </form>
+
+                            <form action="#" th:action="@{'/deleteTodo/' + ${task.task_id}}" method="post">
+                                <td>
+                                    <button class="btn btn-warning">Delete</button>
+                                </td>
+                            </form>
                         </tr>
                     </tbody>
                 </table>

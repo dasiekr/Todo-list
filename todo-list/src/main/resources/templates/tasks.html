@@ -23,7 +23,7 @@
                 <td th:text="${task.targetDate}"></td>
                 <td th:text="${task.isDone}"></td>
                 <td hidden="hidden" class="id" th:text="${task.task_id}"></td>
-            </tr>
+
 
 <!--                <form action="#" th:action="@{'/edit/' + ${task.id}}" method="get">-->
 <!--                    <td>-->
@@ -41,12 +41,12 @@
 <!--                    <button class="btn btn-default">Done</button>-->
 <!--                </td>-->
 
-<!--                <form action="#" th:action="@{'/delete/' + ${task.task_id}}" method="get">-->
-<!--                    <td>-->
-<!--                        <button class="btn btn-default">Delete</button>-->
-<!--                    </td>-->
-<!--                </form>-->
-<!--            </tr>-->
+                <form action="#" th:action="@{'/deleteTodo/' + ${task.task_id}}" method="get">
+                    <td>
+                        <button class="btn btn-default">Delete</button>
+                    </td>
+                </form>
+            </tr>
 
         </tbody>
     </table>

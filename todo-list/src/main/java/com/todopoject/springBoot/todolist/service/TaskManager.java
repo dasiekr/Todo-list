@@ -31,7 +31,7 @@ public class TaskManager implements ITaskManager{
         return principal.toString();
     }
 
-    @InitBinder
+    @InitBinder()
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
@@ -43,7 +43,7 @@ public class TaskManager implements ITaskManager{
     }
 
     @Override
-    public void addTask(Task task, String username) {
+    public void addTask(Task task) {
         task.setDone(false);
         task.setTargetDate(new Date());
         task.setUsername(getLoggedInUserName());
@@ -56,6 +56,8 @@ public class TaskManager implements ITaskManager{
         Task task = getById(id);
         task.setDescription(description);
         task.setTargetDate(new Date());
+        task.setUsername(getLoggedInUserName());
+        task.setDone(false);
         taskRepository.save(task);
     }
 

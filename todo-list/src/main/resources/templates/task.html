@@ -8,28 +8,32 @@
 <div th:replace="fragments/header :: navigation"></div>
 
     <div class="container">
-        <form action="#" th:action="${update.task_id}" th:object="${update}" method="post">
-            <div class="container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Description</th>
-                            <th>Target date</th>
-                            <th>Is it done?</th>
-                        </tr>
-                    </thead>
+        <form th:action="@{/addTodo}" th:object="${newTodo}" method="post">
 
-                    <tbody>
-                        <tr>
-                            <td th:text="${update.description}"></td>
-                            <td th:text="${update.targetDate}"></td>
-                            <td th:text="${update.done}"></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="form-group">
+                <label for="description" class="form-control-label">Description</label>
+                <input type="text" class="form-control" th:field="*{description}" id="description"/>
             </div>
+
+            <div class="form-group">
+                <label for="targetDate" class="form-control-label">Date</label>
+                <input type="Date" pattern="dd/MM/yyyy" class="form-control" th:field="*{targetDate}" id="targetDate"/>
+            </div>
+
+            <div class="form-group">
+                <label for="done" class="form-control-label">Is it done?</label>
+                <input type="text" class="form-control" th:field="*{done}" id="done"/>
+            </div>
+
+
+            <input type="submit" th:value="Submit" class="btn btn-primary"/>
         </form>
     </div>
 
+<!--<script>-->
+<!--    $('#targetDate').datepicker({-->
+<!--        format : 'dd/mm/yyyy'-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>

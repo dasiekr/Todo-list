@@ -1,5 +1,7 @@
 package com.todopoject.springBoot.todolist.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,9 +19,12 @@ public class Task {
     @Size(min = 10)
     private String description;
 
+
     private Date targetDate;
 
+
     private boolean isDone;
+
 
     private String username;
 

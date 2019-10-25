@@ -1,58 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/header :: head">
+<html lang="en">
+<head th:replace="fragments/header :: head">
 </head>
 <body>
-<!--<div th:replace="header :: navigation"></div>-->
-<div id="content" class="container">
-    <h2>Tasks</h2>
-    <table class = "table table-striped">
-        <thead>
-            <tr>
-                <th>Description</th>
-                <th>Target date</th>
-                <th>Is it done?</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
+<div th:replace="fragments/header :: navigation"></div>
+    <div class="container">
+        <div class="card">
+            <div class="card-block">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Target date</th>
+                            <th>Is it done?</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
 
-            <tr th:id="tasks" th:each="task : ${tasks}">
-                <td th:text="${task.description}"></td>
-                <td th:text="${task.targetDate}"></td>
-                <td th:text="${task.isDone}"></td>
-                <td hidden="hidden" class="id" th:text="${task.task_id}"></td>
+                    <tbody>
+                        <tr th:each="task : ${tasks}">
+                            <td th:text="${task.description}"></td>
+                            <td th:text="${task.targetDate}"></td>
+                            <td th:text="${task.done}"></td>
+                            <td th:hidden="hidden" class="id" th:text="${task.task_id}"></td>
 
+                            <form action="#" th:action="@{'/updateTodo/' + ${task.task_id}}" method="post">
+                                <td>
+                                    <button class="btn btn-success">Update</button>
+                                </td>
+                            </form>
 
-<!--                <form action="#" th:action="@{'/edit/' + ${task.id}}" method="get">-->
-<!--                    <td>-->
-<!--                        <button class="btn btn-default">Edit</button>-->
-<!--                    </td>-->
-<!--                </form>-->
-
-<!--                <form action="#" th:action="@{'/archive/' + ${task.id}}" method="get">-->
-<!--                    <td>-->
-<!--                        <button class="btn btn-default">Archive</button>-->
-<!--                    </td>-->
-<!--                </form>-->
-
-<!--                <td class="btn-done">-->
-<!--                    <button class="btn btn-default">Done</button>-->
-<!--                </td>-->
-
-                <form action="#" th:action="@{'/deleteTodo/' + ${task.task_id}}" method="get">
-                    <td>
-                        <button class="btn btn-default">Delete</button>
-                    </td>
-                </form>
-            </tr>
-
-        </tbody>
-    </table>
-
-
+                            <form action="#" th:action="@{'/deleteTodo/' + ${task.task_id}}" method="post">
+                                <td>
+                                    <button class="btn btn-warning">Delete</button>
+                                </td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <form action="#" th:action="@{/addTodo}" method="get">
+            <td>
+                <button class="btn btn-success">Add todo</button>
+            </td>
+        </form>
     </div>
-</div>
+
 </body>
 </html>

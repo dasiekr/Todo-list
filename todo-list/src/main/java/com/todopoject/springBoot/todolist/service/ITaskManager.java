@@ -7,7 +7,7 @@ import java.util.List;
 public interface ITaskManager {
 
     Task getById(int id);
-    void addTask(Task task, String username);
+    void addTask(Task task);
     void updateTask(String description, int id);
     void deleteTask(int id);
     List<Task> getTasksByUsername();

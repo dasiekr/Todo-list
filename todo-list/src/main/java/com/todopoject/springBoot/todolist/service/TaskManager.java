@@ -52,14 +52,24 @@ public class TaskManager implements ITaskManager{
     }
 
     @Override
-    public void updateTask(String description, int id) {
+    public void updateTask(int id) {
         Task task = getById(id);
-        task.setDescription(description);
+        task.setDescription(task.getDescription());
         task.setTargetDate(new Date());
         task.setUsername(getLoggedInUserName());
         task.setDone(false);
         taskRepository.save(task);
     }
+
+//    @Override
+//    public void updateTask(Task task) {
+//        taskRepository.delete(task);
+////        task.setDescription(task.getDescription());
+////        task.setTargetDate(new Date());
+////        task.setDone(false);
+//        task.setUsername(getLoggedInUserName());
+//        taskRepository.save(task);
+//    }
 
     @Override
     public void deleteTask(int id) {

@@ -35,10 +35,6 @@ public class RoleRepositoryCommandLineRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         roleRepository.save(new Role("USER"));
         roleRepository.save(new Role("ADMIN"));
-//        Role adminRole = roleRepository.findByRole("ADMIN");
-//        User admin1 = new User("MainAdmin", passwordEncoder.encode("admin"), "admin@gmail.com", new HashSet<Role>(Arrays.asList(adminRole)));
-//        userRepository.save(admin1);
-
     }
 
 

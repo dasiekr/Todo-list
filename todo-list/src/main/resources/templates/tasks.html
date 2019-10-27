@@ -26,7 +26,7 @@
                             <td th:text="${task.done}"></td>
                             <td th:hidden="hidden" class="id" th:text="${task.task_id}"></td>
 
-                            <form action="#" th:action="@{'/updateTodo/' + ${task.task_id}}" method="post">
+                            <form action="#" th:action="@{'/updateTodo/' + ${task.task_id}}" method="get">
                                 <td>
                                     <button class="btn btn-success">Update</button>
                                 </td>

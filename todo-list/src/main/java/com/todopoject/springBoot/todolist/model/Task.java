@@ -15,7 +15,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int task_id;
 
-    @NotNull
+
     @Size(min = 10)
     private String description;
 

@@ -1,10 +1,39 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+<head th:replace="fragments/header :: head">
 </head>
+
 <body>
-$END$
+<div th:replace="fragments/header :: navigation"></div>
+
+<div class="container">
+    <form th:action="@{'/updateTodo/' + ${newTodo.task_id}}" th:object="${newTodo}" method="post">
+
+        <div class="form-group">
+            <label for="description" class="form-control-label">Description</label>
+            <input type="text" class="form-control" th:field="*{description}" id="description"/>
+        </div>
+
+        <div class="form-group">
+            <label for="targetDate" class="form-control-label">Date</label>
+            <input type="Date" pattern="dd/MM/yyyy" class="form-control" th:field="*{targetDate}" id="targetDate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="done" class="form-control-label">Is it done?</label>
+            <input type="text" class="form-control" th:field="*{done}" id="done"/>
+        </div>
+
+
+        <input type="submit" th:value="Submit" class="btn btn-primary"/>
+    </form>
+</div>
+
+<!--<script>-->
+<!--    $('#targetDate').datepicker({-->
+<!--        format : 'dd/mm/yyyy'-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>

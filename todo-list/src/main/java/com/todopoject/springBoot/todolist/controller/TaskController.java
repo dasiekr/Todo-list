@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 public class TaskController {
@@ -53,17 +54,18 @@ public class TaskController {
     }
 
 
-    @GetMapping(value = "/updateTodo")
-    public String updateTaskPage(Model model, @RequestParam int id) {
+    @GetMapping(value = "/updateTodo/{id}")
+    public String updateTaskPage(Model model, @PathVariable int id) {
         model.addAttribute("newTodo", taskManager.getById(id));
-        return "task";
+        return "update";
     }
-    @PostMapping(value = "/updateTodo")
-    public String updateTask(@ModelAttribute Task task, BindingResult bindingResult, @RequestParam int id, String desc) {
-        if(bindingResult.hasErrors()) {
-            return "task";
-        }
-        taskManager.updateTask(desc, id);
+    @PostMapping(value = "/updateTodo/{id}")
+    public String updateTask(@PathVariable int id) {
+//        if(bindingResult.hasErrors()) {
+//            return "task";
+//        }
+
+        taskManager.updateTask(id);
 
         return "redirect:/tasks";
     }

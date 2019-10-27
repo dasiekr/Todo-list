@@ -9,7 +9,7 @@ public interface ITaskManager {
 
     Task getById(int id);
     void addTask(Task task);
-    void updateTask(int id);
+    void updateTask(Task task, int id);
     void deleteTask(int id);
     List<Task> getTasksByUsername();
 }

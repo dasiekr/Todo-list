@@ -17,9 +17,12 @@ import java.util.List;
 @Service
 public class TaskManagerImpl implements TaskManager {
 
-    @Autowired
     TaskRepository taskRepository;
 
+    @Autowired
+    public TaskManagerImpl(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 
     private String getLoggedInUserName() {
 

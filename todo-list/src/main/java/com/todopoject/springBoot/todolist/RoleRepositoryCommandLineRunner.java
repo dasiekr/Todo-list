@@ -12,17 +12,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class RoleRepositoryCommandLineRunner implements CommandLineRunner {
 
-    @Autowired
     RoleRepository roleRepository;
 
-    @Autowired
     UserRepository userRepository;
 
-    @Autowired
     TaskManager taskManager;
 
-    @Autowired
     BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    public RoleRepositoryCommandLineRunner(RoleRepository roleRepository, UserRepository userRepository, TaskManager taskManager, BCryptPasswordEncoder passwordEncoder) {
+        this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
+        this.taskManager = taskManager;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public void run(String... args) throws Exception {

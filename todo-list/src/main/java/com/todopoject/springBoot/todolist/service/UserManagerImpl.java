@@ -16,14 +16,18 @@ public class UserManagerImpl implements UserManager {
 
     public static User user;
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
     private RoleRepository roleRepository;
 
-    @Autowired
     BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    public UserManagerImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public int getUserId() {

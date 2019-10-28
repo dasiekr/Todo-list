@@ -1,20 +1,13 @@
 package com.todopoject.springBoot.todolist;
 
 import com.todopoject.springBoot.todolist.model.Role;
-import com.todopoject.springBoot.todolist.model.Task;
-import com.todopoject.springBoot.todolist.model.User;
 import com.todopoject.springBoot.todolist.repository.RoleRepository;
-import com.todopoject.springBoot.todolist.repository.TaskRepository;
 import com.todopoject.springBoot.todolist.repository.UserRepository;
-import com.todopoject.springBoot.todolist.service.ITaskManager;
+import com.todopoject.springBoot.todolist.service.TaskManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
 
 @Component
 public class RoleRepositoryCommandLineRunner implements CommandLineRunner {
@@ -26,7 +19,7 @@ public class RoleRepositoryCommandLineRunner implements CommandLineRunner {
     UserRepository userRepository;
 
     @Autowired
-    ITaskManager taskManager;
+    TaskManager taskManager;
 
     @Autowired
     BCryptPasswordEncoder passwordEncoder;

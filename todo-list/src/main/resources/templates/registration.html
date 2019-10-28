@@ -4,7 +4,7 @@
 <head th:replace="fragments/header :: head">
 </head>
 <body>
-<!--<div th:replace="header :: header"></div>-->
+<div th:replace="fragments/header :: login_navigation"></div>
 <div id="content" class="container">
     <h2>Create your account</h2>
     <form action="#" th:action="@{/registration}" th:object="${userData}" method="post">

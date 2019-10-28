@@ -4,8 +4,8 @@ import com.todopoject.springBoot.todolist.error.DifferentPasswordException;
 import com.todopoject.springBoot.todolist.error.ExistingEmailException;
 import com.todopoject.springBoot.todolist.error.ExistingUsernameException;
 import com.todopoject.springBoot.todolist.model.User;
-import com.todopoject.springBoot.todolist.service.IUserManager;
-import com.todopoject.springBoot.todolist.validator.IUserValidator;
+import com.todopoject.springBoot.todolist.service.UserManager;
+import com.todopoject.springBoot.todolist.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,13 +17,13 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-    IUserManager userManager;
+    UserManager userManager;
 
-    IUserValidator userValidator;
+    UserValidator userValidator;
 
 
     @Autowired
-    public UserController(IUserManager userManager, IUserValidator userValidator) {
+    public UserController(UserManager userManager, UserValidator userValidator) {
         this.userManager = userManager;
         this.userValidator = userValidator;
     }

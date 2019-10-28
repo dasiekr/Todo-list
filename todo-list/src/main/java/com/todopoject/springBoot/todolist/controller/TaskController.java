@@ -1,8 +1,8 @@
 package com.todopoject.springBoot.todolist.controller;
 
 import com.todopoject.springBoot.todolist.model.Task;
-import com.todopoject.springBoot.todolist.service.ITaskManager;
-import com.todopoject.springBoot.todolist.service.IUserManager;
+import com.todopoject.springBoot.todolist.service.TaskManager;
+import com.todopoject.springBoot.todolist.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,13 +17,13 @@ import javax.validation.Valid;
 @Controller
 public class TaskController {
 
-    IUserManager userManager;
+    UserManager userManager;
 
-    ITaskManager taskManager;
+    TaskManager taskManager;
 
 
     @Autowired
-    public TaskController(IUserManager userManager, ITaskManager taskManager) {
+    public TaskController(UserManager userManager, TaskManager taskManager) {
         this.userManager = userManager;
         this.taskManager = taskManager;
     }

@@ -20,9 +20,17 @@
                 <input type="Date" pattern="dd/MM/yyyy" class="form-control" th:field="*{targetDate}" id="targetDate"/>
             </div>
 
+
             <div class="form-group">
-                <label for="done" class="form-control-label">Is it done?</label>
-                <input type="text" class="form-control" th:field="*{done}" id="done"/>
+                <label for="status" class="form-control-label">Status</label>
+                <div class="custom-select">
+                    <span class="dropdown-arrow"></span>
+                    <select th:field="*{status}" id="status">
+                        <option value="To do">To do</option>
+                        <option value="In progress">In progress</option>
+                        <option value="Done">Done</option>
+                    </select>
+                </div>
             </div>
 
 
@@ -30,10 +38,5 @@
         </form>
     </div>
 
-<!--<script>-->
-<!--    $('#targetDate').datepicker({-->
-<!--        format : 'dd/mm/yyyy'-->
-<!--    });-->
-<!--</script>-->
 </body>
 </html>

@@ -42,8 +42,8 @@ public class RoleRepositoryCommandLineRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         roleRepository.save(new Role("USER"));
         roleRepository.save(new Role("ADMIN"));
-        taskRepository.save(new Task("Pierwsze zadanie", new Date(), false, "springuser"));
-        taskRepository.save(new Task("Drugie zadanie", new Date(), false, "springuser"));
+        taskRepository.save(new Task("Pierwsze zadanie", new Date(), "To do", "springuser"));
+        taskRepository.save(new Task("Drugie zadanie", new Date(), "To do", "springuser"));
         Role userRole = roleRepository.findByRole("USER");
         User user = new User("springuser", passwordEncoder.encode("qwerty"), "springuser@gmail.com", "qwerty", new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);

@@ -47,7 +47,7 @@ public class TaskController {
     }
 
     @PostMapping(value = "/addTodo")
-    public String addTodo(@Valid @ModelAttribute Task task, BindingResult bindingResult) {
+    public String addTodo(@ModelAttribute Task task, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "task";
         }
@@ -58,9 +58,10 @@ public class TaskController {
 
     @GetMapping(value = "/updateTodo/{id}")
     public String updateTaskPage(Model model, @PathVariable int id) {
-        model.addAttribute("newTodo", taskManager.getById(id));
+        model.addAttribute("updateTodo", taskManager.getById(id));
         return "update";
     }
+    
     @PostMapping(value = "/updateTodo/{id}")
     public String updateTask(@PathVariable int id, @ModelAttribute Task task, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {

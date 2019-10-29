@@ -47,11 +47,12 @@ public class TaskManagerImpl implements TaskManager {
 
     @Override
     public void addTask(Task task) {
-        task.setDone(false);
-        task.setTargetDate(new Date());
-        task.setUsername(getLoggedInUserName());
-        task.setDescription(task.getDescription());
-        taskRepository.save(task);
+        Task newTask = new Task();
+        newTask.setStatus(task.getStatus());
+        newTask.setTargetDate(task.getTargetDate());
+        newTask.setUsername(getLoggedInUserName());
+        newTask.setDescription(task.getDescription());
+        taskRepository.save(newTask);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class TaskManagerImpl implements TaskManager {
         updateTask.setUsername(getLoggedInUserName());
         updateTask.setDescription(task.getDescription());
         updateTask.setTargetDate(task.getTargetDate());
-        updateTask.setDone(false);
+        updateTask.setStatus(task.getStatus());
         taskRepository.save(updateTask);
     }
 

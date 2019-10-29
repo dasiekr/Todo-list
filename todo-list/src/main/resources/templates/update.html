@@ -7,33 +7,36 @@
 <body>
 <div th:replace="fragments/header :: navigation"></div>
 
-<div class="container">
-    <form th:action="@{'/updateTodo/' + ${newTodo.task_id}}" th:object="${newTodo}" method="post">
+    <div class="container">
+        <form th:action="@{'/updateTodo/' + ${updateTodo.task_id}}" th:object="${updateTodo}" method="post">
 
-        <div class="form-group">
-            <label for="description" class="form-control-label">Description</label>
-            <input type="text" class="form-control" th:field="*{description}" id="description"/>
-        </div>
+            <div class="form-group">
+                <label for="description" class="form-control-label">Description</label>
+                <input type="text" class="form-control" th:field="*{description}" id="description"/>
+            </div>
 
-        <div class="form-group">
-            <label for="targetDate" class="form-control-label">Date</label>
-            <input type="Date" pattern="dd/MM/yyyy" class="form-control" th:field="*{targetDate}" id="targetDate"/>
-        </div>
-
-        <div class="form-group">
-            <label for="done" class="form-control-label">Is it done?</label>
-            <input type="text" class="form-control" th:field="*{done}" id="done"/>
-        </div>
+            <div class="form-group">
+                <label for="targetDate" class="form-control-label">Date</label>
+                <input type="Date" class="form-control" th:field="*{targetDate}" id="targetDate"/>
+            </div>
 
 
-        <input type="submit" th:value="Submit" class="btn btn-primary"/>
-    </form>
-</div>
+            <div class="form-group">
+                <label for="status" class="form-control-label">Status</label>
+                <div class="custom-select">
+                    <span class="dropdown-arrow"></span>
+                    <select th:field="*{status}" id="status">
+                        <option value="To do">To do</option>
+                        <option value="In progress">In progress</option>
+                        <option value="Done">Done</option>
+                    </select>
+                </div>
+            </div>
 
-<!--<script>-->
-<!--    $('#targetDate').datepicker({-->
-<!--        format : 'dd/mm/yyyy'-->
-<!--    });-->
-<!--</script>-->
+
+            <input type="submit" th:value="Submit" class="btn btn-primary"/>
+        </form>
+    </div>
+
 </body>
 </html>

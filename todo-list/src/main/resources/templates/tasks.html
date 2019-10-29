@@ -13,7 +13,7 @@
                         <tr>
                             <th>Description</th>
                             <th>Target date</th>
-                            <th>Is it done?</th>
+                            <th>Status</th>
                             <th>Update</th>
                             <th>Delete</th>
                         </tr>
@@ -23,7 +23,7 @@
                         <tr th:each="task : ${tasks}">
                             <td th:text="${task.description}"></td>
                             <td th:text="${task.targetDate}"></td>
-                            <td th:text="${task.done}"></td>
+                            <td th:text="${task.status}"></td>
                             <td th:hidden="hidden" class="id" th:text="${task.task_id}"></td>
 
                             <form action="#" th:action="@{'/updateTodo/' + ${task.task_id}}" method="get">
@@ -48,6 +48,7 @@
             </td>
         </form>
     </div>
+
 
 </body>
 </html>

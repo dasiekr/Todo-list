@@ -1,9 +1,6 @@
 package com.todopoject.springBoot.todolist.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -23,7 +20,7 @@ public class Task {
     private Date targetDate;
 
 
-    private boolean isDone;
+    private String status;
 
 
     private String username;
@@ -32,13 +29,12 @@ public class Task {
         super();
     }
 
-    public Task(String description, Date targetDate, boolean isDone, String username) {
+    public Task(@Size(min = 10) String description, Date targetDate, String status, String username) {
         this.description = description;
         this.targetDate = targetDate;
-        this.isDone = isDone;
+        this.status = status;
         this.username = username;
     }
-
 
     public int getTask_id() {
         return task_id;
@@ -64,12 +60,12 @@ public class Task {
         this.targetDate = targetDate;
     }
 
-    public boolean isDone() {
-        return isDone;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDone(boolean done) {
-        isDone = done;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getUsername() {
@@ -86,7 +82,7 @@ public class Task {
                 "task_id=" + task_id +
                 ", description='" + description + '\'' +
                 ", targetDate=" + targetDate +
-                ", isDone=" + isDone +
+                ", status=" + status +
                 ", username=" + username +
                 '}';
     }

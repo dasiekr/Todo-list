@@ -61,11 +61,11 @@ public class TaskController {
         model.addAttribute("updateTodo", taskManager.getById(id));
         return "update";
     }
-    
+
     @PostMapping(value = "/updateTodo/{id}")
     public String updateTask(@PathVariable int id, @ModelAttribute Task task, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
-            return "task";
+            return "update";
         }
 
         taskManager.updateTask(task, id);

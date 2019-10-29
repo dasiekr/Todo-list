@@ -34,11 +34,11 @@ public class TaskManagerImpl implements TaskManager {
         return principal.toString();
     }
 
-    @InitBinder()
-    public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-    }
+//    @InitBinder
+//    public void initBinder(WebDataBinder binder) {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+//    }
 
     @Override
     public Task getById(int id) {

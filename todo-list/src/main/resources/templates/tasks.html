@@ -22,7 +22,7 @@
                     <tbody>
                         <tr th:each="task : ${tasks}">
                             <td th:text="${task.description}"></td>
-                            <td th:text="${task.targetDate}"></td>
+                            <td th:text="${#dates.format(task.targetDate, 'dd-MM-yyyy')}"></td>
                             <td th:text="${task.status}"></td>
                             <td th:hidden="hidden" class="id" th:text="${task.task_id}"></td>
 

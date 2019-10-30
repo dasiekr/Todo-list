@@ -28,7 +28,7 @@ public class TaskManagerImpl implements TaskManager {
 
         return principal.toString();
     }
-    
+
 
     @Override
     public Task getById(int id) {
@@ -38,10 +38,10 @@ public class TaskManagerImpl implements TaskManager {
     @Override
     public void addTask(Task task) {
         Task newTask = new Task();
-        newTask.setStatus(task.getStatus());
-        newTask.setTargetDate(task.getTargetDate());
         newTask.setUsername(getLoggedInUserName());
         newTask.setDescription(task.getDescription());
+        newTask.setTargetDate(task.getTargetDate());
+        newTask.setStatus(task.getStatus());
         taskRepository.save(newTask);
     }
 
